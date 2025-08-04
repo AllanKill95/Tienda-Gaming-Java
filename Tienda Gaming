@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+public class TiendaInteractiva {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Arreglos con productos y precios
+        String[] productos = {"Mouse Gamer", "Teclado Mecánico", "Audífonos Pro", "Monitor 24\"", "Silla Ergonomica"};
+        double[] precios = {29.99, 79.99, 59.99, 159.99, 199.99};
+
+        // Arreglo para el carrito (máximo 10 productos)
+        String[] carrito = new String[10];
+        double[] carritoPrecios = new double[10];
+        int cantidadCarrito = 0;
+
+        int opcion;
+        do {
+            // Menú interactivo
+            System.out.println("\n🛒 Bienvenido a la Tienda Gamer");
+            System.out.println("1. Ver productos disponibles");
+            System.out.println("2. Agregar producto al carrito");
+            System.out.println("3. Ver total a pagar");
+            System.out.println("4. Salir");
+            System.out.print("Selecciona una opción: ");
+            opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    // Mostrar lista de productos
+                    System.out.println("\nProductos disponibles:");
+                    for (int i = 0; i < productos.length; i++) {
+                        System.out.println((i + 1) + ". " + productos[i] + " - Lps " + precios[i]);
+                    }
+                    break;
+
+                case 2:
+                    // Agregar productos al carrito
+                    System.out.print("\nIngresa el número del producto que deseas agregar: ");
+                    int seleccion = scanner.nextInt();
+
+                    // Validación de selección
+                    if (seleccion >= 1 && seleccion <= productos.length) {
+                        if (cantidadCarrito < carrito.length) {
+                            carrito[cantidadCarrito] = productos[seleccion - 1];
+                            carritoPrecios[cantidadCarrito] = precios[seleccion - 1];
+                            cantidadCarrito++;
+                            System.out.println("Producto agregado al carrito.");
+                        } else {
+                            System.out.println("El carrito está lleno.");
+                        }
+                    } else {
+                        System.out.println("Selección inválida.");
+                    }
+                    break;
+
+                case 3:
+                    // Calcular total
+                    double total = 0;
+                    System.out.println("\n🧾 Tu carrito:");
+                    for (int i = 0; i < cantidadCarrito; i++) {
+                        System.out.println("- " + carrito[i] + " - Lps " + carritoPrecios[i]);
+                        total += carritoPrecios[i];
+                    }
+                    System.out.println("Total a pagar: Lps " + total);
+                    break;
+
+                case 4:
+                    System.out.println("¡Gracias por visitar nuestra tienda!");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida.");
+            }
+
+        } while (opcion != 4);
+    }
+}
