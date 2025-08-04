@@ -56,7 +56,7 @@ public class TiendaInteractiva {
                 case 3:
                     // Calcular total
                     double total = 0;
-                    System.out.println("\n🧾 Tu carrito:");
+                    System.out.println("\nTu carrito:");
                     for (int i = 0; i < cantidadCarrito; i++) {
                         System.out.println("- " + carrito[i] + " - Lps " + carritoPrecios[i]);
                         total += carritoPrecios[i];
